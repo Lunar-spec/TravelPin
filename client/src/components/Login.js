@@ -33,7 +33,7 @@ export default function Login({setShowLogin, myStorage, setCurrentUser}) {
         <div className='loginContainer'>
             <div className='loglogo'>
                 <EditLocationAltIcon sx={{ fontSize: 40 }}/>
-                Travel Pin
+                Log In
             </div>
 
             <form onSubmit={handleSubmit}>

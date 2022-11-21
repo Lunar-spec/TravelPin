@@ -7,11 +7,14 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import NearMeIcon from '@mui/icons-material/NearMe';
 import LogoutIcon from '@mui/icons-material/Logout';
+import DeleteIcon from '@mui/icons-material/Delete';
 import * as React from 'react';
 import Map, { Marker, Popup } from 'react-map-gl';
 import axios from 'axios';
 import Register from './components/Register';
 import Login from './components/Login';
+import Error from './components/showError';
+import { format } from 'timeago.js';
 
 const App= () => {
 const myStorage = window.localStorage;
@@ -20,6 +23,7 @@ const myStorage = window.localStorage;
   
   const [showRegister, setShowRegister] = React.useState(false);
   const [showLogin, setShowLogin] = React.useState(false);
+  const [showError, setShowError] = React.useState(false);
 
   const [pins, setPins] = React.useState([]);
 
@@ -30,9 +34,8 @@ const myStorage = window.localStorage;
   const [title, setTitle] = React.useState(null);
   const [desc, setDesc] = React.useState(null);
   const [rating, setRating] = React.useState(0);
-  
-  
-  
+
+
   React.useEffect(() => {
     axios.get("http://localhost:5000/api/pin").then((response) => {
       setPins(response.data);
@@ -42,6 +45,13 @@ const myStorage = window.localStorage;
   const handleMarkerClick = (id) => {
     setCurrentPlaceId(id);
   };
+
+  const delPin = (id) => {
+    axios.delete(`http://localhost:5000/api/pin/${id}`).then(() => {
+    window.location.reload(false);
+    setDelPin(false);
+    })
+  }
 
   const handleAddClick = (e) => {
     //console.log(e);
@@ -55,8 +65,8 @@ const myStorage = window.localStorage;
   //console.log(newPlace);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newPin = {
+      e.preventDefault()
+      const newPin = {
       username: currentUser,
       title: title,
       desc: desc,
@@ -64,17 +74,32 @@ const myStorage = window.localStorage;
       lat: newPlace.lat,
       long: newPlace.long,
     }
-    console.log(title,desc,rating)
-
-    try {
+    //console.log(newPin)
+    if (newPin.username == null || title == null || desc== null || rating == null)
+      {
+        setShowError(true)
+      }
+    
+    else {
+      try {
       const res = await axios.post("http://localhost:5000/api/pin", newPin)
       setPins([...pins,res.data])
       setNewPlace(null);
     } catch (err) {
       console.log(err);
     }
+  }
+    
 
   };
+
+  const delPinStyle  = {
+    color:currentUser ? 'rgb(255, 146, 123)' : 'black',
+    top: 10,
+    right:30,
+    position: 'absolute',
+    cursor: 'pointer',
+  }
 
   const handleLogout = () => {
     myStorage.removeItem("user");
@@ -130,8 +155,9 @@ const myStorage = window.localStorage;
         fill="none" strokeLinecap={"round"} 
         strokeLinejoin={"round"}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
       </Marker>
-      {mark._id === currentPlaceId && (
-        <Popup longitude={mark.long} latitude={mark.lat}
+      {
+        mark._id === currentPlaceId && (
+          <Popup longitude={mark.long} latitude={mark.lat}
         anchor="top"
         closeButton={true}
         closeOnClick={false}
@@ -148,13 +174,15 @@ const myStorage = window.localStorage;
             </div>
             <label className='di'>Information</label>
             <span className='username'>Created by: <b>{mark.username}</b></span>
-            <span className='date'>Created on: {new Date(mark.createdAt).toLocaleDateString()}</span>
+            <span className='date'>Created {format(mark.createdAt)}</span>
+            <DeleteIcon style={delPinStyle} sx={{ fontSize: 25 }} onClick={mark.username === currentUser ? () => delPin(mark._id) : null}/>
           </div>
         </Popup>
       )   
-        } 
-      </div>
-    })
+      
+    } 
+    </div>
+  })
       
     }
     
@@ -193,10 +221,13 @@ const myStorage = window.localStorage;
       )
     }
     {showRegister && 
-    <Register setShowRegister = {setShowRegister} />
+      <Register setShowRegister = {setShowRegister} />
     }
     {showLogin && 
-    <Login setShowLogin = {setShowLogin} myStorage = {myStorage} setCurrentUser = {setCurrentUser}/>
+      <Login setShowLogin = {setShowLogin} myStorage = {myStorage} setCurrentUser = {setCurrentUser}/>
+    }
+    { showError &&
+      <Error setShowError={setShowError}/>
     }
   </Map>;
 

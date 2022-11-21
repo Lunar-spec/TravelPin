@@ -33,7 +33,7 @@ export default function Register({setShowRegister}) {
         <div className='registerContainer'>
             <div className='reglogo'>
                 <AddLocationAltIcon sx={{ fontSize: 40 }}/>
-                Travel Pin
+                Register
             </div>
 
             <form onSubmit={handleSubmit}>

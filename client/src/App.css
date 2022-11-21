@@ -1,0 +1,168 @@
+body {
+    overflow: hidden;
+  }
+  .navbar {
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 5px;
+    position: inherit;
+    font-size: 25px;
+  }
+
+.toleft {
+  text-align: left;
+  float:left;
+  cursor: default; 
+  margin-left: 15px;
+  margin-top: 2.5px;
+  pointer-events: none;
+}
+
+.toppad {
+  margin-top: 3px;
+}
+
+.toright {
+  
+  text-align: right;
+  float:right;
+  padding: 5px;
+  margin-right: 5px;
+  
+}
+
+.card {
+  width: 300px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+} 
+
+.place {
+  font-size: 14px;
+}
+
+label.di {
+  width: max-content;
+  color: purple;
+  font-size: 14px;
+  border-bottom:0.5px solid purple;
+  margin: 4px 0;
+  font-weight: 600 ;
+}
+
+.desc {
+  font-size: 14px;
+}
+
+.star {
+  color: tomato;
+  
+}
+
+.username {
+  font-size: 14px;
+
+}
+
+.date {
+  font-size: 12px;
+}
+
+form {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+label.pform {
+  width: max-content;
+  color: tomato;
+  font-size: 14px;
+  border-bottom:0.5px solid tomato;
+  margin: 4px 0;
+  font-weight: 600;
+}
+
+input , textarea{
+  border: none;
+  border-bottom: 1px solid gray;
+}
+form.label {
+  color:tomato;
+}
+input::placeholder, textarea::placeholder {
+  font-size: 12px;
+  color: rgb(45, 45, 45);
+}
+
+.submitButton {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  background-color: tomato;
+  cursor: pointer;
+}
+
+button {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color:white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btnlogout {
+  background-color: transparent;
+  margin-right: 20px;
+}
+.btnlogout::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 4px;
+  background: tomato;
+  transition: width .3s;
+}
+.btnlogout:hover::after {
+width: 100%;
+}
+
+.btnlogin {
+  background-color: transparent;
+}
+.btnlogin::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 4px;
+  background: rgb(1, 90, 1);
+  transition: width .3s;
+}
+.btnlogin:hover::after {
+width: 100%;
+}
+
+.btnreg {
+  background-color: transparent;
+}
+
+.btnreg::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 4px;
+    background: rgb(0, 110, 183);
+    transition: width .3s;
+}
+.btnreg:hover::after {
+  width: 100%;
+}
+
+

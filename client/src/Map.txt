@@ -1,0 +1,73 @@
+/* eslint-disable */
+import React, { useEffect, useState }from 'react';
+import Map, { Marker, Popup } from 'react-map-gl';
+import './App.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import StarIcon from '@mui/icons-material/Star';
+import axios from "axios";
+
+function App() {
+
+useEffect(() => {
+  const [pins, setPins] = useState([]);
+
+  const getPins = async () => {
+    try {
+      const allPins = await axios.get('/pins');
+      setPins(allPins.data)
+    } catch (err) {
+      console.log(err)
+    }
+  };
+  getPins();
+},[]);
+
+  return <Map
+    initialViewState={{
+      longitude: -100,
+      latitude: 40,
+      zoom: 1
+    }}
+    style={{width: '100vw', height: '100vh'}}
+    mapStyle="mapbox://styles/mapbox/dark-v10"
+    mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+  >
+{pins.map(p => {
+<>
+  <Marker 
+  longitude={p.long} 
+  latitude={p.lat} 
+  anchor="bottom" >
+      
+    </Marker>
+    { }
+  </>
+})}
+  </Map>;
+}
+{
+    <Popup 
+      longitude={-100} latitude={40}
+      anchor="top"
+      onClose={() => setShowPopup(false)}
+      >
+      <div className='card'>
+      <label>Place: </label>
+      <h4 className='place'></h4>
+      <label>Review: </label>
+      <p className='desc'></p>
+      <label>Rating: </label>
+      <div className='stars'>
+      <StarIcon className='star'/>
+      <StarIcon className='star'/>
+      <StarIcon className='star'/>
+      <StarIcon className='star'/>
+      <StarIcon className='star'/>
+      </div>
+      <label>Information: </label>
+      <span className='username'>Created by <b></b></span>
+      <span className='date'></span>
+      </div>
+    </Popup>
+}
+export default App;

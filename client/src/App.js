@@ -14,6 +14,7 @@ import axios from 'axios';
 import Register from './components/Register';
 import Login from './components/Login';
 import Error from './components/showError';
+import ErrorLog from './components/showErrLog'
 import { format } from 'timeago.js';
 
 const App= () => {
@@ -23,7 +24,10 @@ const myStorage = window.localStorage;
   
   const [showRegister, setShowRegister] = React.useState(false);
   const [showLogin, setShowLogin] = React.useState(false);
+
   const [showError, setShowError] = React.useState(false);
+
+  const [showErrorLogin,setShowErrorLogin] = React.useState(false);
 
   const [pins, setPins] = React.useState([]);
 
@@ -49,17 +53,28 @@ const myStorage = window.localStorage;
   const delPin = (id) => {
     axios.delete(`http://localhost:5000/api/pin/${id}`).then(() => {
     window.location.reload(false);
-    setDelPin(false);
     })
   }
 
   const handleAddClick = (e) => {
     //console.log(e);
-    const [long, lat] = e.lngLat.toArray();
-    setNewPlace({
+    //console.log(title)
+    title=null;
+    //console.log(newPin)
+    //console.log(desc)
+    desc=null;
+    //console.log(rating)
+    rating=0;
+
+    if (currentUser != null)
+    {
+      const [long, lat] = e.lngLat.toArray();
+      setNewPlace({
       long,
       lat,
     });
+    }
+    else {setShowErrorLogin(true)}
     //console.log(long,lat)
   }; 
   //console.log(newPlace);
@@ -228,6 +243,9 @@ const myStorage = window.localStorage;
     }
     { showError &&
       <Error setShowError={setShowError}/>
+    }
+    { showErrorLogin &&
+      <ErrorLog setShowErrorLogin={setShowErrorLogin}/>
     }
   </Map>;
 

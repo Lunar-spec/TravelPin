@@ -1,0 +1,42 @@
+.errorLog {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.allogo {
+    color: rgb(217, 0, 118  );
+    display: flex;
+    align-items: center;
+    font-weight:800;
+    font-size: large;
+    margin-top: 15px;
+}
+
+.errBtn {
+    border: none;
+    padding: 5px;
+    width: 100px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: white;
+    background-color: rgb(217, 0, 118 );
+    cursor: pointer;
+}
+
+.errMes {
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+}

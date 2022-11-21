@@ -59,12 +59,12 @@ const myStorage = window.localStorage;
   const handleAddClick = (e) => {
     //console.log(e);
     //console.log(title)
-    title=null;
-    //console.log(newPin)
-    //console.log(desc)
-    desc=null;
-    //console.log(rating)
-    rating=0;
+    // title=null;
+    // //console.log(newPin)
+    // //console.log(desc)
+    // desc=null;
+    // //console.log(rating)
+    // rating=0;
 
     if (currentUser != null)
     {

@@ -1,35 +1,131 @@
 body {
     overflow: hidden;
   }
-  .navbar {
+
+.navbar {
     background-color: black;
     color: white;
     margin: 0;
-    padding: 5px;
+    padding: 2px;
     position: inherit;
-    font-size: 25px;
+    height: 80.5px;
   }
 
-.toleft {
-  text-align: left;
-  float:left;
-  cursor: default; 
+.title {
+  margin:50% 50% 50% 50%;
+}
+
+
+.buttonTitle {
+  font-size: 25px;
+}
+
+.reloadIcon {
+  color: gold;
+}
+
+.reloadbtn {
   margin-left: 15px;
-  margin-top: 2.5px;
-  pointer-events: none;
+  cursor: pointer;
 }
 
-.toppad {
-  margin-top: 3px;
+.reloadbtn::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 4px;
+  background: gold;
+  transition: width .3s;
 }
 
-.toright {
+.reloadbtn:hover::after {
+  width: 100%;
+  }
   
-  text-align: right;
-  float:right;
-  padding: 5px;
+
+.logoutIcon {
+  color: tomato;
+  float: right;
+  margin-top: 5px;
   margin-right: 5px;
-  
+}
+
+.logoutbtn {
+  float: right;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.logoutbtn::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 4px;
+  background: tomato;
+  transition: width .3s;
+}
+
+.logoutbtn:hover::after {
+  width: 100%;
+  }
+
+.name {
+  float: left;
+  margin-left: 15px;
+  font-weight: 600;
+}
+
+.nameIcon {
+  color: greenyellow;
+  margin-left: 5px;
+}
+
+.loginbtn {
+  float:right;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.loginIcon {
+  margin-top: 5px;
+  float: right;
+  margin-right: 5px;
+}
+
+.loginbtn::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 4px;
+  background: rgb(1, 90, 1);
+  transition: width .3s;
+}
+.loginbtn:hover::after {
+width: 100%;
+}
+
+.regbtn {
+  float: left;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.regIcon {
+  margin-top: 2px;
+  margin-left: 5px;
+  float: right;
+}
+
+.regbtn::after {
+  content: '';
+    display: block;
+    width: 0;
+    height: 4px;
+    background: rgb(0, 110, 183);
+    transition: width .3s;
+}
+.regbtn:hover::after {
+  width: 100%;
 }
 
 .card {
@@ -92,9 +188,11 @@ input , textarea{
   border: none;
   border-bottom: 1px solid gray;
 }
+
 form.label {
   color:tomato;
 }
+
 input::placeholder, textarea::placeholder {
   font-size: 12px;
   color: rgb(45, 45, 45);
@@ -111,58 +209,10 @@ input::placeholder, textarea::placeholder {
 
 button {
   border: none;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 2px;
   color:white;
   font-size: 20px;
-  cursor: pointer;
-}
-
-.btnlogout {
   background-color: transparent;
-  margin-right: 20px;
-}
-.btnlogout::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 4px;
-  background: tomato;
-  transition: width .3s;
-}
-.btnlogout:hover::after {
-width: 100%;
-}
-
-.btnlogin {
-  background-color: transparent;
-}
-.btnlogin::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 4px;
-  background: rgb(1, 90, 1);
-  transition: width .3s;
-}
-.btnlogin:hover::after {
-width: 100%;
-}
-
-.btnreg {
-  background-color: transparent;
-}
-
-.btnreg::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 4px;
-    background: rgb(0, 110, 183);
-    transition: width .3s;
-}
-.btnreg:hover::after {
-  width: 100%;
 }
 
 

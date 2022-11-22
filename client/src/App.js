@@ -16,7 +16,8 @@ import Login from './components/Login';
 import Error from './components/showError';
 import ErrorLog from './components/showErrLog'
 import { format } from 'timeago.js';
-
+import AnchorIcon from '@mui/icons-material/Anchor';
+import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
 const App= () => {
 const myStorage = window.localStorage;
 
@@ -39,7 +40,6 @@ const myStorage = window.localStorage;
   const [desc, setDesc] = React.useState(null);
   const [rating, setRating] = React.useState(0);
 
-
   React.useEffect(() => {
     axios.get("http://localhost:5000/api/pin").then((response) => {
       setPins(response.data);
@@ -52,9 +52,10 @@ const myStorage = window.localStorage;
 
   const delPin = (id) => {
     axios.delete(`http://localhost:5000/api/pin/${id}`).then(() => {
-    window.location.reload(false);
+    this.location.reload(false );
     })
   }
+
 
   const handleAddClick = (e) => {
 
@@ -64,10 +65,11 @@ const myStorage = window.localStorage;
       setNewPlace({
       long,
       lat,
-    });
+    })
     }
     else {setShowErrorLogin(true)}
     //console.log(long,lat)
+
   }; 
   //console.log(newPlace);
 
@@ -101,7 +103,7 @@ const myStorage = window.localStorage;
   };
 
   const delPinStyle  = {
-    color:currentUser ? 'rgb(255, 146, 123)' : 'black',
+    color:currentUser ? 'rgb(255, 146, 123)' : 'rgb(229, 228, 226)',
     top: 10,
     right:30,
     position: 'absolute',
@@ -116,22 +118,31 @@ const myStorage = window.localStorage;
   return <div>
     
     <div className='navbar'>
-    
-    <span className='toleft'>Travel Pin</span> &nbsp;
-    <NearMeIcon color='secondary' className='toppad' sx={{ fontSize: 30 }}/>
+    <span className='title'>
+    <button className='buttonTitle'>Travel Pin<NearMeIcon color='secondary' className='fly' sx={{ fontSize: 30 }}/></button>
+    </span>
+    <span>
+    <button className='button reloadbtn' onClick={() => window.location.reload(false)}>Reload <ModeOfTravelIcon className='reloadIcon'/></button>
+    </span>
     {currentUser ? 
-    (<span>
-    <button className='button toright btnlogout' onClick={handleLogout}>Log Out</button>
-    <LogoutIcon color='warning' className='toright toppad'/>
-    </span>) : (
+    (<>
+    <span>
+    <button className='button logoutbtn' onClick={handleLogout}>Log Out</button>
+    <LogoutIcon color={'warning'} className='logoutIcon'/>
+    
+    </span>
+    <span>
+    <button className='button name'>Hello, {myStorage.getItem('user')}<AnchorIcon className='nameIcon'/></button>
+    </span>
+    </>
+    ) : (
       <>
       <span>
-        <button className='button toright btnlogin' onClick={() => setShowLogin(true)}>Login</button>
-        <LockOpenIcon color='success' className='toright toppad'/>
+        <button className='button loginbtn' onClick={() => setShowLogin(true)}>Login</button><LockOpenIcon color='success' className='loginIcon'/>
+        
       </span>
       <span>
-        <button className='button toright btnreg' onClick={() => setShowRegister(true)}>Register</button>
-        <HowToRegIcon color='info' className='toright toppad'/>
+        <button className='button regbtn' onClick={() => setShowRegister(true)}>Register<HowToRegIcon color='info' className='regIcon'/></button>
     </span>
       </>
     )}
@@ -142,7 +153,7 @@ const myStorage = window.localStorage;
     initialViewState={{
       longitude: 0,
       latitude: 0,
-      zoom: 1.5,
+      zoom: 1,
       doubleClickZoom: false
     }}
     style={{width: '100vw', height: '100vh'}}
@@ -158,7 +169,7 @@ const myStorage = window.localStorage;
         >
       <svg 
         width="25" height="25" 
-        stroke={mark.username === currentUser ? "red" : "cyan"} strokeWidth={"2"} 
+        stroke={mark.username === currentUser ? "rgb(255, 66, 0 )" : "cyan"} strokeWidth={"2"} 
         fill="none" strokeLinecap={"round"} 
         strokeLinejoin={"round"}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
       </Marker>

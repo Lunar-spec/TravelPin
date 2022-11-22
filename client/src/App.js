@@ -57,14 +57,6 @@ const myStorage = window.localStorage;
   }
 
   const handleAddClick = (e) => {
-    //console.log(e);
-    //console.log(title)
-    // title=null;
-    // //console.log(newPin)
-    // //console.log(desc)
-    // desc=null;
-    // //console.log(rating)
-    // rating=0;
 
     if (currentUser != null)
     {
@@ -206,7 +198,7 @@ const myStorage = window.localStorage;
           anchor="top"
           closeButton={true}
           closeOnClick={false}
-          maxWidth='none'
+          maxWidth= 'none'
           closeOnMove={false}
           onClose={() => setNewPlace(null)}>
             <div>

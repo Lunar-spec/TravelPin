@@ -51,9 +51,8 @@ const myStorage = window.localStorage;
   };
 
   const delPin = (id) => {
-    axios.delete(`http://localhost:5000/api/pin/${id}`).then(() => {
-    this.location.reload(false );
-    })
+    axios.delete(`http://localhost:5000/api/pin/${id}`);
+    window.location.reload(false);
   }
 
 
@@ -94,6 +93,7 @@ const myStorage = window.localStorage;
       const res = await axios.post("http://localhost:5000/api/pin", newPin)
       setPins([...pins,res.data])
       setNewPlace(null);
+      window.location.reload(false);
     } catch (err) {
       console.log(err);
     }

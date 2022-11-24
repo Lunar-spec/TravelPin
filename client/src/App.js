@@ -16,7 +16,6 @@ import Login from './components/Login';
 import Error from './components/showError';
 import ErrorLog from './components/showErrLog';
 import Footer from './components/footer';
-
 import { format } from 'timeago.js';
 import AnchorIcon from '@mui/icons-material/Anchor';
 import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
@@ -170,7 +169,7 @@ const myStorage = window.localStorage;
         >
       <svg 
         width="25" height="25" 
-        stroke={mark.username === currentUser ? "rgb(255, 66, 0 )" : "cyan"} strokeWidth={"2"} 
+        stroke={mark.username === currentUser ? "rgb(255, 66, 0)" : "cyan"} strokeWidth={"2"} 
         fill="none" strokeLinecap={"round"} 
         strokeLinejoin={"round"}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
       </Marker>
@@ -253,8 +252,6 @@ const myStorage = window.localStorage;
     }
   <Footer />
   </Map>;
-
-
   </div>
 }
 

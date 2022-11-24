@@ -18,6 +18,7 @@ import ErrorLog from './components/showErrLog'
 import { format } from 'timeago.js';
 import AnchorIcon from '@mui/icons-material/Anchor';
 import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
+
 const App= () => {
 const myStorage = window.localStorage;
 
@@ -98,8 +99,6 @@ const myStorage = window.localStorage;
       console.log(err);
     }
   }
-    
-
   };
 
   const delPinStyle  = {

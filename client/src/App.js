@@ -14,7 +14,9 @@ import axios from 'axios';
 import Register from './components/Register';
 import Login from './components/Login';
 import Error from './components/showError';
-import ErrorLog from './components/showErrLog'
+import ErrorLog from './components/showErrLog';
+import Footer from './components/footer';
+
 import { format } from 'timeago.js';
 import AnchorIcon from '@mui/icons-material/Anchor';
 import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
@@ -249,6 +251,7 @@ const myStorage = window.localStorage;
     { showErrorLogin &&
       <ErrorLog setShowErrorLogin={setShowErrorLogin}/>
     }
+  <Footer />
   </Map>;
 
 

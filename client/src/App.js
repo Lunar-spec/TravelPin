@@ -201,7 +201,6 @@ const myStorage = window.localStorage;
     } 
     </div>
   })
-      
     }
     
     { newPlace &&

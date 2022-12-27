@@ -1,6 +1,7 @@
 /* eslint-disable */
 /* eslint-disable no-console */
-import 'mapbox-gl/dist/mapbox-gl.css';
+import 'mapbox-gl/dist/mapbox-gl.css'
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 import './App.css';
 import StarIcon from '@mui/icons-material/Star';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
@@ -9,7 +10,7 @@ import NearMeIcon from '@mui/icons-material/NearMe';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DeleteIcon from '@mui/icons-material/Delete';
 import * as React from 'react';
-import Map, { Marker, Popup } from 'react-map-gl';
+import Map, { Marker, Popup, NavigationControl, GeolocateControl } from 'react-map-gl';
 import axios from 'axios';
 import Register from './components/Register';
 import Login from './components/Login';
@@ -18,7 +19,8 @@ import ErrorLog from './components/showErrLog';
 import Footer from './components/footer';
 import { format } from 'timeago.js';
 import AnchorIcon from '@mui/icons-material/Anchor';
-import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
+import Geocoder from './components/geocoder';
+
 
 const App= () => {
 const myStorage = window.localStorage;
@@ -57,6 +59,8 @@ const myStorage = window.localStorage;
     window.location.reload(false);
   }
 
+  
+  var style = 'mapbox://styles/mapbox/streets-v12';
 
   const handleAddClick = (e) => {
 
@@ -121,9 +125,7 @@ const myStorage = window.localStorage;
     <span className='title'>
     <button className='buttonTitle'>Travel Pin<NearMeIcon color='secondary' className='fly' sx={{ fontSize: 30 }}/></button>
     </span>
-    <span>
-    <button className='button reloadbtn' onClick={() => window.location.reload(false)}>Reload <ModeOfTravelIcon className='reloadIcon'/></button>
-    </span>
+    
     {currentUser ? 
     (<>
     <span>
@@ -131,6 +133,7 @@ const myStorage = window.localStorage;
     <LogoutIcon color={'warning'} className='logoutIcon'/>
     
     </span>
+    
     <span>
     <button className='button name'>Hello, {myStorage.getItem('user')}<AnchorIcon className='nameIcon'/></button>
     </span>
@@ -139,7 +142,6 @@ const myStorage = window.localStorage;
       <>
       <span>
         <button className='button loginbtn' onClick={() => setShowLogin(true)}>Login</button><LockOpenIcon color='success' className='loginIcon'/>
-        
       </span>
       <span>
         <button className='button regbtn' onClick={() => setShowRegister(true)}>Register<HowToRegIcon color='info' className='regIcon'/></button>
@@ -147,20 +149,21 @@ const myStorage = window.localStorage;
       </>
     )}
     
-    
     </div>
     <Map
     initialViewState={{
-      longitude: 0,
-      latitude: 0,
-      zoom: 1,
-      doubleClickZoom: false
+      latitude: 28.644800,
+      longitude: 77.216721,
+      zoom: 3,
+      doubleClickZoom: false,
+      pitch: 50,
     }}
     style={{width: '100vw', height: '100vh'}}
-    mapStyle="mapbox://styles/mapbox/dark-v10"
+    mapStyle= {style}
     mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
     onDblClick={handleAddClick}
   >
+    
     {pins.map((mark) => {
       return <div>
         <Marker longitude={mark.long} latitude={mark.lat} anchor="bottom" 
@@ -169,7 +172,7 @@ const myStorage = window.localStorage;
         >
       <svg 
         width="25" height="25" 
-        stroke={mark.username === currentUser ? "rgb(255, 66, 0)" : "cyan"} strokeWidth={"2"} 
+        stroke={mark.username === currentUser ? "rgb(255, 66, 0)" : "rgb(131, 0, 186)"} strokeWidth={"2"} 
         fill="none" strokeLinecap={"round"} 
         strokeLinejoin={"round"}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
       </Marker>
@@ -249,8 +252,12 @@ const myStorage = window.localStorage;
     { showErrorLogin &&
       <ErrorLog setShowErrorLogin={setShowErrorLogin}/>
     }
+
+  <Geocoder/>
+  <GeolocateControl trackUserLocation={true} showAccuracyCircle={true} showUserHeading={true} />
+  <NavigationControl />
   <Footer />
-  </Map>;
+  </Map>
   </div>
 }
 

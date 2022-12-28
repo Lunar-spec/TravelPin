@@ -22,7 +22,7 @@ import AnchorIcon from '@mui/icons-material/Anchor';
 import Geocoder from './components/geocoder';
 
 
-const App= () => {
+const App = () => {
 const myStorage = window.localStorage;
 
   const [currentUser, setCurrentUser] = React.useState(myStorage.getItem('user'));
@@ -60,10 +60,9 @@ const myStorage = window.localStorage;
   }
 
   
-  var style = 'mapbox://styles/mapbox/streets-v12';
+  const style = 'mapbox://styles/mapbox/streets-v12';
 
   const handleAddClick = (e) => {
-
     if (currentUser != null)
     {
       const [long, lat] = e.lngLat.toArray();

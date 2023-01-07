@@ -15,6 +15,7 @@ mongoose.connect(process.env.CONNECTION_URL, {useNewUrlParser: true}).then(() =>
     console.log("MongoDB Connected")
 }).catch(err => console.log(err));
 
+//using of routes
 app.use('/api/users', userRoute);
 app.use('/api/pin', pinRoute);
 

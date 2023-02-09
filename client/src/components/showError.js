@@ -1,8 +1,7 @@
 import './showErr.css'
 import ErrorIcon from '@mui/icons-material/Error';
-export default function showError({setShowError}) {
-
-
+export default function showError({ setShowError }) {
+    
     return (<div className='errorCom'>
                 <div className='errlogo' >
                     <ErrorIcon sx={{ fontSize: 40 }}/>Travel Pin

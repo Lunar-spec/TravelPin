@@ -5,3 +5,5 @@ travel itinerary. The app provides an intuitive user interface that enables user
 others to explore the world. Implemented a rating and review system that enables users to leave feedback for the locations they visit,
 providing valuable insights and recommendations to fellow travellers. Utilized modern web development technologies, including
 React and Node.js, to ensure a smooth and seamless user experience.
+
+Incase you are using this repository do add your own mapbox gl token key in client and PORT & MongoDB URL in server both in .env
